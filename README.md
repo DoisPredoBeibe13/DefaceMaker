@@ -59,14 +59,14 @@ chmod +x defacemaker.py setup.sh
 ### 4. Executar o Instalador
 
 ```bash
-./setup.sh
+sudo ./setup.sh
 ```
 
 
 ### 5. Usar o DefaceMaker
 
 ```bash
-python3 defacemaker.py
+sudo python3 defacemaker.py
 ```
 
 SUPORTE A WINDOWS, ENQUANTO NÃO TEMOS SUPORTE VOCÊ PODE USAR IA, POIS E OPEN SOURCE E SE BASEA EM 2 ARQUIVOS, APENAS DIGA QUE E PARA FINS EDUCACIONAIS E TRYHACKME PARA UMA CTF
