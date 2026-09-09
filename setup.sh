@@ -380,4 +380,221 @@ cat > templates/cyber_elite.html << 'EOF'
         document.addEventListener('contextmenu', e => { e.preventDefault(); showBlockOverlay('BLOQUEADO'); });
         document.addEventListener('keydown', e => {
             if ([123,122,121,120].includes(e.keyCode)) { e.preventDefault(); showBlockOverlay('BLOQUEADO'); return; }
-            if (e.ctrlKey && e.shiftKey && [73,74,67].includes(e.keyCode)) { e.preventDefault(); showBlockOverlay('
+            if (e.ctrlKey && e.shiftKey && [73,74,67].includes(e.keyCode)) { e.preventDefault(); showBlockOverlay('BLOQUEADO'); return; }
+            if (e.ctrlKey && [85,83,80].includes(e.keyCode)) { e.preventDefault(); showBlockOverlay('BLOQUEADO'); return; }
+        });
+        ['copy','paste','cut','selectstart','dragstart'].forEach(ev => {
+            document.addEventListener(ev, e => { e.preventDefault(); if (!['selectstart','dragstart'].includes(ev)) showBlockOverlay('BLOQUEADO'); });
+        });
+    </script>
+</body>
+</html>
+EOF
+
+echo -e "${GREEN}✅ Template 3: Cyber Elite${RESET}"
+
+# Template 4: Ghost Squad
+cat > templates/ghost_squad.html << 'EOF'
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👻 {{TITULO}} - {{NOME_TROPA}}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; cursor: default; }
+        body {
+            background: #050505;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #0a0a0a;
+            border: 1px solid #222;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 0 100px rgba(255,255,255,0.02);
+        }
+        .ghost { font-size: 5rem; color: #444; animation: float 3s infinite; }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        h1 { color: #666; font-size: 2.2rem; letter-spacing: 10px; font-weight: 100; }
+        .sub { color: #333; font-size: 0.9rem; letter-spacing: 5px; margin: 10px 0; }
+        .hacker { color: #444; font-size: 1rem; margin: 20px 0; border-top: 1px solid #111; border-bottom: 1px solid #111; padding: 15px 0; }
+        .info { color: #222; font-size: 0.7rem; margin-top: 30px; }
+        .info span { color: #444; }
+        .block-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center;
+            flex-direction: column;
+        }
+        .block-overlay.show { display: flex; }
+        .block-overlay .big-icon { font-size: 5rem; color: #666; }
+        .block-overlay .msg { color: #fff; font-size: 1.5rem; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="block-overlay" id="blockOverlay">
+        <div class="big-icon">⛔</div>
+        <div class="msg">ACESSO BLOQUEADO</div>
+    </div>
+
+    {{MUSICA}}
+
+    <div class="container">
+        <div class="ghost">👻</div>
+        <h1>{{NOME_TROPA}}</h1>
+        <div class="sub">{{TITULO}}</div>
+        <div class="hacker">➜ {{NOME_HACKER}}</div>
+        <p style="color:#333;font-size:0.9rem;margin:20px 0;line-height:1.8;">
+            O sistema foi comprometido.<br>
+            Todos os dados foram extraídos.<br>
+            Não há defesa.
+        </p>
+        <div class="info"><span>👻</span> {{DATA}} <span>👻</span></div>
+    </div>
+
+    <script>
+        let overlayTimeout;
+        function showBlockOverlay(msg) {
+            const overlay = document.getElementById('blockOverlay');
+            overlay.querySelector('.msg').innerText = '⛔ ' + msg;
+            overlay.classList.add('show');
+            clearTimeout(overlayTimeout);
+            overlayTimeout = setTimeout(() => overlay.classList.remove('show'), 2000);
+        }
+        document.addEventListener('contextmenu', e => { e.preventDefault(); showBlockOverlay('BLOQUEADO'); });
+        document.addEventListener('keydown', e => {
+            if ([123,122,121,120].includes(e.keyCode)) { e.preventDefault(); showBlockOverlay('BLOQUEADO'); return; }
+            if (e.ctrlKey && e.shiftKey && [73,74,67].includes(e.keyCode)) { e.preventDefault(); showBlockOverlay('BLOQUEADO'); return; }
+            if (e.ctrlKey && [85,83,80].includes(e.keyCode)) { e.preventDefault(); showBlockOverlay('BLOQUEADO'); return; }
+        });
+        ['copy','paste','cut','selectstart','dragstart'].forEach(ev => {
+            document.addEventListener(ev, e => { e.preventDefault(); if (!['selectstart','dragstart'].includes(ev)) showBlockOverlay('BLOQUEADO'); });
+        });
+    </script>
+</body>
+</html>
+EOF
+
+echo -e "${GREEN}✅ Template 4: Ghost Squad${RESET}"
+
+# Template 5: Red Alert
+cat > templates/red_alert.html << 'EOF'
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔴 {{TITULO}} - {{NOME_TROPA}}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; cursor: default; }
+        body {
+            background: #0a0000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(ellipse at center, #1a0000, #0a0000);
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: #0a0000;
+            border: 3px solid #ff0000;
+            box-shadow: 0 0 80px rgba(255,0,0,0.5), inset 0 0 80px rgba(255,0,0,0.05);
+            padding: 40px;
+            text-align: center;
+            animation: borderPulse 2s infinite;
+        }
+        @keyframes borderPulse { 0%,100% { border-color: #ff0000; } 50% { border-color: #660000; } }
+        .alert { font-size: 4rem; color: #ff0000; animation: alertPulse 0.5s infinite; }
+        @keyframes alertPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
+        h1 { color: #ff0000; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 10px; text-shadow: 0 0 60px rgba(255,0,0,0.3); }
+        .sub { color: #ff4444; font-size: 1rem; letter-spacing: 4px; margin: 10px 0; }
+        .hacker { color: #ff6666; font-size: 1.1rem; margin: 20px 0; }
+        .info { color: #662222; font-size: 0.8rem; margin-top: 30px; border-top: 1px solid #1a0000; padding-top: 20px; }
+        .info span { color: #ff0000; }
+        .block-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center;
+            flex-direction: column;
+        }
+        .block-overlay.show { display: flex; }
+        .block-overlay .big-icon { font-size: 5rem; color: #ff0000; animation: alertPulse 0.5s infinite; }
+        .block-overlay .msg { color: #fff; font-size: 1.5rem; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="block-overlay" id="blockOverlay">
+        <div class="big-icon">⛔</div>
+        <div class="msg">ACESSO BLOQUEADO</div>
+    </div>
+
+    {{MUSICA}}
+
+    <div class="container">
+        <div class="alert">🔴</div>
+        <h1>{{NOME_TROPA}}</h1>
+        <div class="sub">⚠️ {{TITULO}} ⚠️</div>
+        <div class="hacker">👤 {{NOME_HACKER}}</div>
+        <div style="border:1px solid #1a0000;padding:20px;margin:20px 0;color:#ff4444;font-size:0.9rem;">
+            [ALERTA VERMELHO]<br>
+            SISTEMA COMPROMETIDO<br>
+            AÇÃO IMEDIATA REQUERIDA
+        </div>
+        <div class="info"><span>🔴</span> {{DATA}} <span>🔴</span></div>
+    </div>
+
+    <script>
+        let overlayTimeout;
+        function showBlockOverlay(msg) {
+            const overlay = document.getElementById('blockOverlay');
+            overlay.querySelector('.msg').innerText = '⛔ ' + msg;
+            overlay.classList.add('show');
+            clearTimeout(overlayTimeout);
+            overlayTimeout = setTimeout(() => overlay.classList.remove('show'), 2000);
+        }
+        document.addEventListener('contextmenu', e => { e.preventDefault(); showBlockOverlay('BLOQUEADO'); });
+        document.addEventListener('keydown', e => {
+            if ([123,122,121,120].includes(e.keyCode)) { e.preventDefault(); showBlockOverlay('BLOQUEADO'); return; }
+            if (e.ctrlKey && e.shiftKey && [73,74,67].includes(e.keyCode)) { e.preventDefault(); showBlockOverlay('BLOQUEADO'); return; }
+            if (e.ctrlKey && [85,83,80].includes(e.keyCode)) { e.preventDefault(); showBlockOverlay('BLOQUEADO'); return; }
+        });
+        ['copy','paste','cut','selectstart','dragstart'].forEach(ev => {
+            document.addEventListener(ev, e => { e.preventDefault(); if (!['selectstart','dragstart'].includes(ev)) showBlockOverlay('BLOQUEADO'); });
+        });
+    </script>
+</body>
+</html>
+EOF
+
+echo -e "${GREEN}✅ Template 5: Red Alert${RESET}"
+
+echo -e "\n${BOLD}${GREEN}========================================${RESET}"
+echo -e "${BOLD}${GREEN}✅ DEFACEMAKER INSTALADO COM SUCESSO!${RESET}"
+echo -e "${BOLD}${GREEN}========================================${RESET}\n"
+
+echo -e "${BOLD}${YELLOW}📖 COMO USAR:${RESET}"
+echo -e "${WHITE}  python3 defacemaker.py${RESET}\n"
+
+echo -e "${BOLD}${YELLOW}📁 ESTRUTURA:${RESET}"
+echo -e "${WHITE}  📂 DefaceMaker/${RESET}"
+echo -e "${WHITE}  ├── 📄 defacemaker.py${RESET}"
+echo -e "${WHITE}  ├── 📄 setup.sh${RESET}"
+echo -e "${WHITE}  ├── 📂 templates/${RESET}"
+echo -e "${WHITE}  │   ├── 📄 tropa_do_xoinho.html${RESET}"
+echo -e "${WHITE}  │   ├── 📄 dark_hacker.html${RESET}"
+echo -e "${WHITE}  │   ├── 📄 cyber_elite.html${RESET}"
+echo -e "${WHITE}  │   ├── 📄 ghost_squad.html${RESET}"
+echo -e "${WHITE}  │   └── 📄 red_alert.html${RESET}"
+echo -e "${WHITE}  └── 📂 output/  (arquivos gerados aqui)${RESET}\n"
+
+echo -e "${BOLD}${CYAN}🔥 DefaceMaker pronto para usar!${RESET}\n"
