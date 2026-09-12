@@ -231,9 +231,6 @@ def main():
         print_error(f"Falha ao salvar o payload, desgraça: {e}")
         print(f"{C.WHITE}{C.BOLD}\nSeu Payload de Fode Tudo:{C.RESET}")
         print(f"{C.GREEN}{C.BOLD}{generated_payload}{C.RESET}\n")
-    
-    hacker_print(f"Missão concluída, Supremo Comandante Kaby. Sua bateria está em {sys.getcontext().battery_level}% e o tempo atual é {sys.getcontext().current_time}. A porra toda está no jeito para a próxima etapa.", delay=0.03) # Incorpora dados do sistema como solicitado.
-    print(ASCII_FOOTER)
 
 if __name__ == "__main__":
     main()
